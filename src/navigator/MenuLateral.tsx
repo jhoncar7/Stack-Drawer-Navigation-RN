@@ -5,22 +5,24 @@ import { StackNavigator } from './StackNavigator';
 import { Image, Text, useWindowDimensions, View } from 'react-native';
 import { styles } from '../theme/appTheme';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Tabs } from './Tabs';
 
 const Drawer = createDrawerNavigator();
 
 export const MenuLateral = () => {
 
-    const { height, width } = useWindowDimensions();
+    const { width } = useWindowDimensions();
 
     return (
         <Drawer.Navigator
             screenOptions={{
                 //drawerPosition: 'right',
-                drawerType: (width >= 600 ? 'permanent' : 'slide'),
+                drawerType: (width >= 600 ? 'permanent' : 'back'),
                 headerShown: false,
             }}
             drawerContent={(props) => <MenuInterno {...props} />}
         >
+            {/* <Drawer.Screen name="Tab" component={Tabs} /> */}
             <Drawer.Screen name="StackNaviga" component={StackNavigator} />
             <Drawer.Screen name="Settings" component={SettingScreen} />
         </Drawer.Navigator >
@@ -33,8 +35,8 @@ const MenuInterno = ({ navigation }: DrawerContentComponentProps) => {
             {/* Parte del avatar */}
             <View style={styles.avatarContainer}>
                 <Image
-                    source={require('../../foto.jpeg')}
-                    /* source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWJDqBszV_zvs_4ivjdxakIem3jRv9NRl5E8rdXqYYgZoosS8VVi6TVLpmZeqgbdw7qlc&usqp=CAU' }}*/
+                    //source={require('../../foto.jpeg')}
+                    source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWJDqBszV_zvs_4ivjdxakIem3jRv9NRl5E8rdXqYYgZoosS8VVi6TVLpmZeqgbdw7qlc&usqp=CAU' }}
                     style={styles.avatar}
                 />
             </View>
@@ -43,9 +45,10 @@ const MenuInterno = ({ navigation }: DrawerContentComponentProps) => {
             <View style={styles.menuContainer}>
                 <TouchableOpacity
                     style={styles.menuBtn}
-                    onPress={() => navigation.navigate('StackNaviga')}
+                     onPress={() => navigation.navigate('StackNaviga')} 
+                    //onPress={() => navigation.navigate('Tab')}
                 >
-                    <Text style={styles.menuText}>Navegacion Stack</Text>
+                    <Text style={styles.menuText}>Navegacion Tabs</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
