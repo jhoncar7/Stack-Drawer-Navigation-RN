@@ -29,7 +29,8 @@ export const StackNavigator = () => {
                 headerStyle: {
                     elevation: 0, //solo en ANDROID en IOS no sirve
                     shadowColor: "transparent", //solo en IOS
-                }
+                },
+                //headerShown: false,
             }}
 
         >
